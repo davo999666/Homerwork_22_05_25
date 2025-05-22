@@ -70,7 +70,7 @@ export const findByMinScore = (minscore) => {
     const results = [];
     for (const student of students.values()) {
         if (student.scores) {
-            for (const score of student.scores) {
+            for (const score of Object.values(student.scores)) {
                 if (score > minscore) {
                     results.push(student);
                 }
