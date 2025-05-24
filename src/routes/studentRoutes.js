@@ -1,7 +1,7 @@
 import express from "express";
 import {
     addScore,
-    addStudent, deleteStudent, findByName, findStudent, updateStudent,
+    addStudent, countByNames, deleteStudent, findByMinScore, findByName, findStudent, updateStudent,
 
 } from "../controller/studentController.js";
 
@@ -13,8 +13,8 @@ router.delete('/student/:id', deleteStudent);
 router.patch('/student/:id', updateStudent);
 router.patch('/score/student/:id', addScore);
 router.get('/students/name/:name', findByName);
-// router.get('/quantity/students', countByNames);
-// router.get('/students/exam/:exam/minscore/:minScore', findByMinScore);
+router.get('/quantity/students', countByNames);
+router.get('/students/exam/:exam/minScore/:minScore', findByMinScore);
 
 
 export default router;

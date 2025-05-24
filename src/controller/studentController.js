@@ -39,7 +39,9 @@ export const updateStudent = async (req, res) => {
 
 
 export const addScore = async (req, res) => {
-    const success = await repo.addScore(+req.params.id, req.body.exemName, +req.body.score);
+    console.log(+req.params.id, req.body.examName, +req.body.score);
+    const success = await repo.addScore(+req.params.id, req.body.examName, +req.body.score);
+
     if (success) {
         res.status(201).send('everything is ok');
     } else {
@@ -58,17 +60,12 @@ export const findByName = async (req, res) => {
 
 }
 
-// export const countByNames = (req, res) => {
-//     const names = req.query.names;
-//     const result = repo.countByNames(names);
-//     if(result){
-//         res.status(200).send(result);
-//     }else {
-//         res.status(404).send('something is happened in repositories');
-//     }
-// }
-//
-// export const findByMinScore = (req, res) => {
-//    const students = repo.findByMinScore(req.params.exem,+req.params.minscore);
-//     res.json(students);
-// }
+export const countByNames = async (req, res) => {
+    const result = (await repo.countByNames(req.query.names));
+    res.json(result);
+}
+
+export const findByMinScore = async (req, res) => {
+   const students = await repo.findByMinScore(req.params.exam, +req.params.minScore);
+    res.json(students);
+}
